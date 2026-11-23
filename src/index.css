@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-slate-100 font-sans text-slate-800 antialiased;
+    overflow-x: hidden;
+    font-variant-numeric: tabular-nums;
+  }
+  #root {
+    min-height: 100vh;
+  }
+  h1, h2, h3 {
+    @apply tracking-tight;
+  }
+  button, [role='button'], select {
+    @apply cursor-pointer;
+  }
+  button:disabled, select:disabled {
+    @apply cursor-not-allowed;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-teal-600 ring-offset-2;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-slate-200 bg-white shadow-sm;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .btn {
+    @apply inline-flex min-h-[2.5rem] items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-2 text-sm font-semibold transition-colors disabled:opacity-50;
+  }
+  .btn-sm {
+    @apply min-h-[2rem] px-3 py-1.5 text-xs;
+  }
+  .btn-primary {
+    @apply bg-brand text-white shadow-sm hover:bg-brand-dark;
+  }
+  .btn-secondary {
+    @apply border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50;
+  }
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700;
+  }
+  .btn-amber {
+    @apply bg-amber-500 text-slate-900 hover:bg-amber-400;
+  }
+  .btn-ghost {
+    @apply text-slate-600 hover:bg-slate-100;
+  }
+
+  .input {
+    @apply block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600/30;
+  }
+  .input-error {
+    @apply border-red-400 focus:border-red-500 focus:ring-red-500/30;
+  }
+  .label {
+    @apply mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-500;
+  }
+}
+
+/* ---------- print / "Export PDF" ---------- */
+.print-only {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+  html, body {
+    background: #fff !important;
+    color: #0f172a;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-sheet table {
+    page-break-inside: auto;
+  }
+  .print-sheet tr {
+    page-break-inside: avoid;
+  }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
